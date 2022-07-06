@@ -14,7 +14,15 @@ class postController extends Controller
   public function index(){
      $posts =Post::all();
    return $this->apiResponse($posts,'ok',200 );
-    
-   
-  }
+    }
+
+     public function show($id){
+        $post =Post::find($id);
+        //if i had a data
+        if($post)
+        return $this->apiResponse($post ,'ok' ,200);
+        else
+        return $this->apiResponse(null ,' this post not Found' ,401);
+    }
+
 }
