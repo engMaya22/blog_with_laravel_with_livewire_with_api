@@ -19,13 +19,15 @@ class postController extends Controller
     }
 
      public function show($id){
-        // $post =Post::find($id);
-        $post = new postResource(Post::find($id));
-        //if i had a data
+         $post =Post::find($id);
+        $post = Post::find($id);
+        //if i had a data , when i return response transmate $post into array with resource to control in fields of post
         if($post)
-        return $this->apiResponse($post ,'ok' ,200);
-        else
-        return $this->apiResponse(null ,' this post not Found' ,401);
+        {
+           return $this->apiResponse( new postResource($post) ,'ok' ,200);
+        }
+       
+           return $this->apiResponse(null,' this post not Found' ,401);
     }
 
 }
